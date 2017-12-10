@@ -31,7 +31,7 @@ class AppsCheck(object):
 			AppsCheck.ok = True
 			AppsCheck.file_read = True;
 		except Exception as e:
-			print e;
+			print "Error: ", e;
 			AppsCheck.ok = False
 
 	@staticmethod
