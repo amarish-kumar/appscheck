@@ -4,7 +4,9 @@ A project developed with an intention to check the status of running application
 
 # How to run
 
-You can also check this pretty guide at [https://hygull.github.io/appscheck/](https://hygull.github.io/appscheck/)
+You can also check this pretty guide at [https://hygull.github.io/appscheck/](https://hygull.github.io/appscheck/) OR
+look at the following 
+
 * Create any directory somewhere in your system and cd inside that
 
 * git clone https://github.com/hygull/appscheck.git
