@@ -11,45 +11,45 @@
 	},
 
 	"service": {
-		"apache2": {
+		"Apache2": {
 			"cmd": "service apache2 status"
 		},
 
-		"mongodb": {
+		"MongoDB": {
 			"cmd": "service mongodb status"
 		}, 
 
-		"nginx": {
+		"Nginx": {
 			"cmd": "service nginx status"
 		},
 
-		"mysql": {
+		"Mysql": {
 			"cmd": "service mysql status"
 		},
 
-		"docker": {
+		"Docker": {
 			"cmd": "service docker status"
 		}
 	},
 	
 	"api": {
-		"magento": {
+		"Magento": {
 			"url": "http://13.89.188.246/genesisV2/admin"
 		},
 
-		"genesis": {
+		"Genesis": {
 			"url": "http://localhost:3000"
 		},
 
-		"workflow": {
+		"Workflow Engine": {
 			"url": "http://localhost:6767/api/v1/workflow"
 		},
 
-		"notifications": {
+		"Notification Engine": {
 			"url": "http://localhost:3002/api/v1/notify"
 		},
 
-		"botengine": {
+		"Bot Engine": {
 			"url": "http://localhost:2687"
 		}
 	}
