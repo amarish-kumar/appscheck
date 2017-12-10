@@ -2,6 +2,10 @@
 
 A project developed with an intention to check the status of running application/api services in your local system or online services
 
+# Python Version
+
+Python 2.7.13
+
 # How to run
 
 You can also check this pretty guide at [https://hygull.github.io/appscheck/](https://hygull.github.io/appscheck/) **OR**
@@ -33,3 +37,5 @@ You will see 1 file named app_status.html that will open automatically in your d
 
 This HTML will show the status of your apps/services saying UP/DOWN if config is properly construted.
 ```
+
+Thanks
