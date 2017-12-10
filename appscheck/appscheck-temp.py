@@ -1,10 +1,11 @@
 """
-	{
-		"createdOn": "07 Dec 2017",
-		"aim": "To check the status of apps",
-		"dependecies": "Python's requests module",
-		"howWillItWork": "It will create 1 html file regarding the apps status and open it in your Ubuntu M/C"
-	}
+    {
+        "createdOn": "07 Dec 2017",
+        "updatedOn": "10 Dec 2017",
+        "aim": "To check the status of apps",
+        "dependecies": "Python's requests module",
+        "howWillItWork": "It will create 1 html file regarding the apps status and open it in your Ubuntu M/C"
+    }
 """
 
 import os
@@ -45,47 +46,55 @@ class AppsCheck(object):
                 count = 0
                 s = "STATUS CODE => "
                 style = """<style>
-							#apps {
-							    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-							    border-collapse: collapse;
-							    width: 100%;
-							}
+                            #apps {
+                                font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+                                border-collapse: collapse;
+                                width: 100%;
+                            }
 
-							#apps td, #apps th {
-							    border: 1px solid #ddd;
-							    padding: 8px;
-							    color: white;
-							}
+                            #apps td, #apps th {
+                                border: 1px solid #ddd;
+                                padding: 8px;
+                                color: white;
+                            }
 
-							#apps tr:hover {background-color: pink;}
+                            #apps tr:hover {background-color: pink;}
 
-							#apps th {
-							    padding-top: 12px;
-							    padding-bottom: 12px;
-							    text-align: left;
-							    background-color: black;
-							    color: white;
-							}
-							body {
-								padding-top: 0px;
-								padding-left: 200px;
-								padding-right: 200px;
-								border: 0px;
-								background-color: gray;
-							}
-							#head-title{
-								color: white;
-								font-weight:bold;
-							}
-							</style>
-					"""
+                            #apps th {
+                                padding-top: 12px;
+                                padding-bottom: 12px;
+                                text-align: left;
+                                background-color: black;
+                                color: white;
+                            }
+                            body {
+                                padding-top: 0px;
+                                padding-left: 200px;
+                                padding-right: 200px;
+                                border: 0px;
+                                background-color: gray;
+                            }
+                            #head-title{
+                                color: white;
+                                font-weight:bold;
+                                padding: 10px;
+                                border: 1px solid lightgreen;
+                            }
+                            img{
+                                width: 32px;
+                                height: 32px;
+                                border: 0px;
+                                padding: 0px;
+                            }
+                            </style>
+                    """
 
                 htmlText = "<!DOCTYPE html>"
                 htmlText += "<head lang='en-US'><title>Application Status (" + \
                     AppsCheck.config["environment"] + ")</title>"
                 htmlText += style
                 htmlText += "</head><body>"
-                htmlText += "<center><h1 id='head-title'>Application Status (" + \
+                htmlText += "<center><h1 id='head-title'><img alt='App' src='https://cdn2.iconfinder.com/data/icons/social-media-icons-23/800/tinder-512.png'> Application Status (" + \
                     AppsCheck.config["environment"] + ")</h1></center><br>"
                 htmlText += "<table id='apps'><tr><th>Service</th>"
                 htmlText += "<th>Status</th></tr>"
@@ -164,3 +173,8 @@ if __name__ == "__main__":
     ac = AppsCheck()
     if ac.ok:
         AppsCheck.check_apps_status()
+
+
+
+
+

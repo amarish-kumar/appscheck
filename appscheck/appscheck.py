@@ -12,7 +12,7 @@ import os
 import subprocess
 import requests
 import json
-
+import mailer
 
 class AppsCheck(object):
     file_read = False
@@ -50,6 +50,7 @@ class AppsCheck(object):
 							    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 							    border-collapse: collapse;
 							    width: 100%;
+                                padding: 50px;
 							}
 
 							#apps td, #apps th {
@@ -75,10 +76,11 @@ class AppsCheck(object):
 								background-color: gray;
 							}
 							#head-title{
-								color: white;
+								color: lightgreen;
 								font-weight:bold;
                                 padding: 10px;
                                 border: 1px solid lightgreen;
+                                background-color: black
 							}
                             img{
                                 width: 32px;
@@ -100,9 +102,6 @@ class AppsCheck(object):
                 htmlText += "<th>Status</th></tr>"
 
                 for app in AppsCheck.config["api"]:
-                    if app == "environment":  # "environment is not a dictionary so continue with next iteration"
-                        continue
-
                     print app
 
                     try:
@@ -159,6 +158,13 @@ class AppsCheck(object):
                 with open("app_status.html", "w") as app_status_file:
                     app_status_file.write(htmlText)
 
+                sender = AppsCheck.config["email"]["sender"]
+                password = AppsCheck.config["email"]["password"]
+                receiver = AppsCheck.config["email"]["receiver"]
+                subject = AppsCheck.config["email"]["subject"]
+                mailer.mailer(sender, receiver, password, subject, htmlText)
+
+                print "Mail successfully sent"
                 print "Opening HTML"
                 # 'xdg-open app_status.html' is for UNIX/LINUX & 'open app_status.html' is for MAC
                 os.system(AppsCheck.config["commandToOpenTemplate"])

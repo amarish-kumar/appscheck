@@ -1,6 +1,15 @@
 {
-	"commandToOpenTemplate": "open app_status.html",
+	"commandToOpenTemplate": "xdg-open app_status.html",
+
 	"environment": "RLQA-01",
+
+	"email": {
+		"sender": "rishikesh0014051992@gmail.com",
+		"receiver": "rishikesh.agrawani@relevancelab.com",
+		"password": "MyPassword",
+		"subject": "APPLICATIONS STATUS: RLQA-01"
+	},
+
 	"service": {
 		"apache2": {
 			"cmd": "service apache2 status"
