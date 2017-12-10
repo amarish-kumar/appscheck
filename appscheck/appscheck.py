@@ -77,7 +77,15 @@ class AppsCheck(object):
 							#head-title{
 								color: white;
 								font-weight:bold;
+                                padding: 10px;
+                                border: 1px solid lightgreen;
 							}
+                            img{
+                                width: 32px;
+                                height: 32px;
+                                border: 0px;
+                                padding: 0px;
+                            }
 							</style>
 					"""
 
@@ -86,7 +94,7 @@ class AppsCheck(object):
                     AppsCheck.config["environment"] + ")</title>"
                 htmlText += style
                 htmlText += "</head><body>"
-                htmlText += "<center><h1 id='head-title'>Application Status (" + \
+                htmlText += "<center><h1 id='head-title'><img alt='App' src='https://cdn2.iconfinder.com/data/icons/social-media-icons-23/800/tinder-512.png'> Application Status (" + \
                     AppsCheck.config["environment"] + ")</h1></center><br>"
                 htmlText += "<table id='apps'><tr><th>Service</th>"
                 htmlText += "<th>Status</th></tr>"
