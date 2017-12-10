@@ -46,50 +46,47 @@ class AppsCheck(object):
                 count = 0
                 s = "STATUS CODE => "
                 style = """<style>
-							#apps {
-							    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-							    border-collapse: collapse;
-							    width: 100%;
+                            #apps {
+                                font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+                                border-collapse: collapse;
+                                width: 100%;
                                 padding: 50px;
-							}
-
-							#apps td, #apps th {
-							    border: 1px solid #ddd;
-							    padding: 8px;
-							    color: white;
-							}
-
-							#apps tr:hover {background-color: pink;}
-
-							#apps th {
-							    padding-top: 12px;
-							    padding-bottom: 12px;
-							    text-align: left;
-							    background-color: black;
-							    color: white;
-							}
-							body {
-								padding-top: 0px;
-								padding-left: 200px;
-								padding-right: 200px;
-								border: 0px;
-								background-color: gray;
-							}
-							#head-title{
-								color: lightgreen;
-								font-weight:bold;
+                            }
+                            #apps td, #apps th {
+                                border: 1px solid #ddd;
+                                padding: 8px;
+                                color: white;
+                            }
+                            #apps tr:hover {background-color: pink;}
+                            #apps th {
+                                padding-top: 12px;
+                                padding-bottom: 12px;
+                                text-align: left;
+                                background-color: black;
+                                color: white;
+                            }
+                            body {
+                                padding-top: 0px;
+                                padding-left: 200px;
+                                padding-right: 200px;
+                                border: 0px;
+                                background-color: gray;
+                            }
+                            #head-title{
+                                color: lightgreen;
+                                font-weight:bold;
                                 padding: 10px;
                                 border: 1px solid lightgreen;
                                 background-color: black
-							}
+                            }
                             img{
                                 width: 32px;
                                 height: 32px;
                                 border: 0px;
                                 padding: 0px;
                             }
-							</style>
-					"""
+                            </style>
+                    """
 
                 htmlText = "<!DOCTYPE html>"
                 htmlText += "<head lang='en-US'><title>Application Status (" + \

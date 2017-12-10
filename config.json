@@ -1,5 +1,5 @@
 {
-	"commandToOpenTemplate": "xdg-open app_status.html",
+	"commandToOpenTemplate": "open app_status.html",
 
 	"environment": "RLQA-01",
 
