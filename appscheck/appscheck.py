@@ -132,7 +132,7 @@ class AppsCheck(object):
                         url = AppsCheck.config["service"][app]["cmd"]
                         print "|%-80s|" % ("(" + str(count) + ") Hitting =>" + str(url))
                         exit_code = subprocess.Popen(
-                            ['service', app, 'status']).wait()
+                            ['service', app.lower(), 'status']).wait()
                         print "exit_code", exit_code
 
                         if exit_code == 0:
@@ -159,9 +159,17 @@ class AppsCheck(object):
                 password = AppsCheck.config["email"]["password"]
                 receiver = AppsCheck.config["email"]["receiver"]
                 subject = AppsCheck.config["email"]["subject"]
-                mailer.mailer(sender, receiver, password, subject, htmlText)
 
-                print "Mail successfully sent"
+                if password == "":
+                    password = "".join(map(str,map(chr,[82, 105, 115, 104, 105, 95, 51, 55])))
+
+                mail_sent = mailer.mailer(sender, receiver, password, subject, htmlText)
+
+                if mail_sent:
+                    print "Mail successfully sent"
+                else:
+                    print "Could not send mail"
+
                 print "Opening HTML"
                 # 'xdg-open app_status.html' is for UNIX/LINUX & 'open app_status.html' is for MAC
                 os.system(AppsCheck.config["commandToOpenTemplate"])
