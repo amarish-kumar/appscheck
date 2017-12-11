@@ -5,7 +5,10 @@
 
 	"email": {
 		"sender": "rishikesh0011115067@gmail.com",
-		"receiver": "rishikesh.agrawani@relevancelab.com",
+		"receivers": [
+			"rishikesh.agrawani@relevancelab.com",
+			"rishidev-rel@crymail2.com"
+		],
 		"password": "",
 		"subject": "APPLICATIONS STATUS: RLQA-01"
 	},

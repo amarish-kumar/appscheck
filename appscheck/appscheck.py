@@ -11,8 +11,11 @@
 import os
 import subprocess
 import requests
+import thread
+from datetime import date
 import json
 import mailer
+
 
 class AppsCheck(object):
     file_read = False
@@ -85,16 +88,22 @@ class AppsCheck(object):
                                 border: 0px;
                                 padding: 0px;
                             }
+                            #sub-head-title {
+                                color: white;
+                                font-family: tahoma;
+                                font-weight: bold;
+                                font-size: 25px;
+                            }
                             </style>
                     """
 
                 htmlText = "<!DOCTYPE html>"
                 htmlText += "<head lang='en-US'><title>Application Status (" + \
-                    AppsCheck.config["environment"] + ")</title>"
+                    AppsCheck.config["environment"] + ")</title><link rel='icon' type='image/png' href='https://cdn0.iconfinder.com/data/icons/basic-16/614/40_-_Apps-512.png'/>"
                 htmlText += style
                 htmlText += "</head><body>"
                 htmlText += "<center><h1 id='head-title'><img alt='App' src='https://cdn2.iconfinder.com/data/icons/social-media-icons-23/800/tinder-512.png'> Application Status (" + \
-                    AppsCheck.config["environment"] + ")</h1></center><br>"
+                    AppsCheck.config["environment"] + ")<br /><span id='sub-head-title'>" + date.today().strftime("%d %b %Y, %A") + "</span></h1></center>"
                 htmlText += "<table id='apps'><tr><th>Service</th>"
                 htmlText += "<th>Status</th></tr>"
 
@@ -157,18 +166,26 @@ class AppsCheck(object):
 
                 sender = AppsCheck.config["email"]["sender"]
                 password = AppsCheck.config["email"]["password"]
-                receiver = AppsCheck.config["email"]["receiver"]
+                receivers = AppsCheck.config["email"]["receivers"]
                 subject = AppsCheck.config["email"]["subject"]
 
                 if password == "":
-                    password = "".join(map(str,map(chr,[82, 105, 115, 104, 105, 95, 51, 55])))
+                    password = "".join(map(str,map(chr,[82, 105, 115, 104, 105, 99, 54, 55])))
 
-                mail_sent = mailer.mailer(sender, receiver, password, subject, htmlText)
+                for receiver in receivers:
 
-                if mail_sent:
-                    print "Mail successfully sent"
-                else:
-                    print "Could not send mail"
+                    print "Trying to send mail to => ", receiver
+                    mail_sent = mailer.mailer(sender, receiver, password, subject, htmlText)
+
+                    if mail_sent:
+                        print "Mail successfully sent"
+                    else:
+                        print "Could not send mail"
+
+                    # try:
+                    #     thread.start_new_thread(mailer.mailer, (sender, receiver, password, subject, htmlText))
+                    # except:
+                    #     print "Could not send mail"
 
                 print "Opening HTML"
                 # 'xdg-open app_status.html' is for UNIX/LINUX & 'open app_status.html' is for MAC
