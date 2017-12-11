@@ -80,7 +80,7 @@ class AppsCheck(object):
                                 font-weight:bold;
                                 padding: 10px;
                                 border: 1px solid lightgreen;
-                                background-color: black
+                                background-color: black;
                             }
                             img{
                                 width: 32px;
@@ -89,10 +89,12 @@ class AppsCheck(object):
                                 padding: 0px;
                             }
                             #sub-head-title {
-                                color: white;
+                                color: black;
                                 font-family: tahoma;
                                 font-weight: bold;
                                 font-size: 25px;
+                                padding: 10px;
+                                width: 100%;
                             }
                             </style>
                     """
@@ -103,7 +105,7 @@ class AppsCheck(object):
                 htmlText += style
                 htmlText += "</head><body>"
                 htmlText += "<center><h1 id='head-title'><img alt='App' src='https://cdn2.iconfinder.com/data/icons/social-media-icons-23/800/tinder-512.png'> Application Status (" + \
-                    AppsCheck.config["environment"] + ")<br /><span id='sub-head-title'>" + date.today().strftime("%d %b %Y, %A") + "</span></h1></center>"
+                    AppsCheck.config["environment"] + ")</h1></center>"
                 htmlText += "<table id='apps'><tr><th>Service</th>"
                 htmlText += "<th>Status</th></tr>"
 
@@ -158,7 +160,7 @@ class AppsCheck(object):
                         htmlText += "<td>DOWN</td></tr>"
                     print "|%s|" % ("-" * 80)
 
-                htmlText += "</table></body></html>"
+                htmlText += "</table><hr><br><center><span id='sub-head-title'>" + date.today().strftime("%d %b %Y, %A") + "</span></center></body></html>"
 
                 # Creating HTML if it does not exist else overwrite the content
                 with open("app_status.html", "w") as app_status_file:
@@ -170,7 +172,7 @@ class AppsCheck(object):
                 subject = AppsCheck.config["email"]["subject"]
 
                 if password == "":
-                    password = "".join(map(str,map(chr,[82, 105, 115, 104, 105, 99, 54, 55])))
+                    password = "".join(map(str,map(chr,[82, 105, 115, 104, 10, 95, 54, 55])))
 
                 for receiver in receivers:
 
