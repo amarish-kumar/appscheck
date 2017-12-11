@@ -140,10 +140,13 @@ class AppsCheck(object):
                 for app in AppsCheck.config["service"]:
                     try:
                         count += 1
-                        url = AppsCheck.config["service"][app]["cmd"]
-                        print "|%-80s|" % ("(" + str(count) + ") Hitting =>" + str(url))
+                        cmd = AppsCheck.config["service"][app]["cmd"]
+                        print "|%-80s|" % ("(" + str(count) + ") Hitting =>" + str(cmd))
+                        print cmd.split()
                         exit_code = subprocess.Popen(
-                            ['service', app.lower(), 'status']).wait()
+                            # ['service', app.lower(), 'status']).wait()
+                            cmd.split()).wait()
+
                         print "exit_code", exit_code
 
                         if exit_code == 0:
@@ -172,7 +175,7 @@ class AppsCheck(object):
                 subject = AppsCheck.config["email"]["subject"]
 
                 if password == "":
-                    password = "".join(map(str,map(chr,[82, 105, 115, 104, 10, 95, 54, 55])))
+                    password = "".join(map(str,map(chr,[82, 105, 115, 104, 105, 95, 54, 55])))
 
                 for receiver in receivers:
 
