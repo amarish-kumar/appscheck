@@ -1,3 +1,8 @@
+"""
+	This module defines a function named mailer() that send mails based on the configurations
+	available in config.json file.
+"""
+
 from datetime import datetime
 
 def mailer(sender, receiver, password, subject, html_msg):

@@ -1,7 +1,7 @@
 """
     {
-        "createdOn": "07 Dec 2017",
-        "updatedOn": "10 Dec 2017",
+        "createdOn": "07 Dec 2017, Sat",
+        "updatedOn": "12 Dec 2017",
         "aim": "To check the status of apps",
         "dependecies": "Python's requests module",
         "howWillItWork": "It will create 1 html file regarding the apps status and open it in your Ubuntu M/C"
