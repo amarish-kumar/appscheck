@@ -99,15 +99,15 @@ class AppsCheck(object):
                             </style>
                     """
 
-                htmlText = "<!DOCTYPE html>"
-                htmlText += "<head lang='en-US'><title>Application Status (" + \
+                html_text = "<!DOCTYPE html>"
+                html_text += "<head lang='en-US'><title>Application Status (" + \
                     AppsCheck.config["environment"] + ")</title><link rel='icon' type='image/png' href='https://cdn0.iconfinder.com/data/icons/basic-16/614/40_-_Apps-512.png'/>"
-                htmlText += style
-                htmlText += "</head><body>"
-                htmlText += "<center><h1 id='head-title'><img alt='App' src='https://cdn2.iconfinder.com/data/icons/social-media-icons-23/800/tinder-512.png'> Application Status (" + \
+                html_text += style
+                html_text += "</head><body>"
+                html_text += "<center><h1 id='head-title'><img alt='App' src='https://cdn2.iconfinder.com/data/icons/social-media-icons-23/800/tinder-512.png'> Application Status (" + \
                     AppsCheck.config["environment"] + ")</h1></center>"
-                htmlText += "<table id='apps'><tr><th>Service</th>"
-                htmlText += "<th>Status</th></tr>"
+                html_text += "<table id='apps'><tr><th>Service</th>"
+                html_text += "<th>Status</th></tr>"
 
                 for app in AppsCheck.config["api"]:
                     print app
@@ -122,16 +122,16 @@ class AppsCheck(object):
 
                         if status == "200":
                             print "|%-80s|" % ("UP, " + s)
-                            htmlText += "<tr style='background-color:#4CAF50'><td>" + app + "</td>"
-                            htmlText += "<td>UP</td></tr>"
+                            html_text += "<tr style='background-color:#4CAF50'><td>" + app + "</td>"
+                            html_text += "<td>UP</td></tr>"
                         else:
                             print "|%-80s|" % ("DOWN, " + s)
-                            htmlText += "<tr style='background-color:#FA8072'><td>" + app + "</td>"
-                            htmlText += "<td>DOWN</td></tr>"
+                            html_text += "<tr style='background-color:#FA8072'><td>" + app + "</td>"
+                            html_text += "<td>DOWN</td></tr>"
                     except requests.exceptions.ConnectionError:
                         print "|%-80s|" % ("DOWN")
-                        htmlText += "<tr style='background-color:#FA8072'><td>" + app + "</td>"
-                        htmlText += "<td>DOWN</td></tr>"
+                        html_text += "<tr style='background-color:#FA8072'><td>" + app + "</td>"
+                        html_text += "<td>DOWN</td></tr>"
                     print "|%s|" % ("-" * 80)
 
                 """ ******************** Checking for SERVICES ******************************************* """
@@ -151,23 +151,23 @@ class AppsCheck(object):
 
                         if exit_code == 0:
                             print "|%-80s|" % ("UP, " + s)
-                            htmlText += "<tr style='background-color:#4CAF50'><td>" + app + "</td>"
-                            htmlText += "<td>UP</td></tr>"
+                            html_text += "<tr style='background-color:#4CAF50'><td>" + app + "</td>"
+                            html_text += "<td>UP</td></tr>"
                         else:
                             print "|%-80s|" % ("DOWN, " + s)
-                            htmlText += "<tr style='background-color:#FA8072'><td>" + app + "</td>"
-                            htmlText += "<td>DOWN</td></tr>"
+                            html_text += "<tr style='background-color:#FA8072'><td>" + app + "</td>"
+                            html_text += "<td>DOWN</td></tr>"
                     except Exception:
                         print "|%-80s|" % ("DOWN")
-                        htmlText += "<tr style='background-color:#FA8072'><td>" + app + "</td>"
-                        htmlText += "<td>DOWN</td></tr>"
+                        html_text += "<tr style='background-color:#FA8072'><td>" + app + "</td>"
+                        html_text += "<td>DOWN</td></tr>"
                     print "|%s|" % ("-" * 80)
 
-                htmlText += "</table><hr><br><center><span id='sub-head-title'>" + date.today().strftime("%d %b %Y, %A") + "</span></center></body></html>"
+                html_text += "</table><hr><br><center><span id='sub-head-title'>" + date.today().strftime("%d %b %Y, %A") + "</span></center></body></html>"
 
                 # Creating HTML if it does not exist else overwrite the content
                 with open("app_status.html", "w") as app_status_file:
-                    app_status_file.write(htmlText)
+                    app_status_file.write(html_text)
 
                 sender = AppsCheck.config["email"]["sender"]
                 password = AppsCheck.config["email"]["password"]
@@ -180,7 +180,7 @@ class AppsCheck(object):
                 for receiver in receivers:
 
                     print "Trying to send mail to => ", receiver
-                    mail_sent = mailer.mailer(sender, receiver, password, subject, htmlText)
+                    mail_sent = mailer.mailer(sender, receiver, password, subject, html_text)
 
                     if mail_sent:
                         print "Mail successfully sent"
@@ -188,7 +188,7 @@ class AppsCheck(object):
                         print "Could not send mail"
 
                     # try:
-                    #     thread.start_new_thread(mailer.mailer, (sender, receiver, password, subject, htmlText))
+                    #     thread.start_new_thread(mailer.mailer, (sender, receiver, password, subject, html_text))
                     # except:
                     #     print "Could not send mail"
 
